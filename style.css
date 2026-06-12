@@ -1,0 +1,509 @@
+/* ===============================================
+   RASTRO VERDE - ESTILOS COMPLETOS
+   Tema: Sustentabilidade, natureza, elegância verde
+   =============================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(145deg, #eef5e8 0%, #d9e4ce 100%);
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #1a2e1f;
+    padding: 2rem 1.5rem;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Efeito de folhas sutis no fundo (opcional decorativo) */
+body::before {
+    content: "🌿🍃🌱";
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 80px;
+    opacity: 0.03;
+    pointer-events: none;
+    white-space: pre;
+    z-index: 0;
+}
+
+/* Container principal */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    background: rgba(255, 255, 240, 0.92);
+    backdrop-filter: blur(2px);
+    border-radius: 3.5rem;
+    box-shadow: 0 25px 45px -12px rgba(40, 60, 25, 0.35), inset 0 1px 0 rgba(255, 255, 200, 0.8);
+    overflow: hidden;
+    padding: 2rem 2rem 3rem;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+/* ========== CABEÇALHO / HERO ========== */
+.hero {
+    text-align: center;
+    margin-bottom: 2.8rem;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #1f5e2a, #3da34b, #6bc46d);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.05));
+}
+
+.hero h1 i {
+    background: none;
+    color: #2b7a3b;
+    font-size: 2.8rem;
+    background-clip: unset;
+    -webkit-background-clip: unset;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.hero p {
+    color: #3a5433;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    font-size: 1.15rem;
+    background: #e1f0daa0;
+    display: inline-block;
+    padding: 0.4rem 1.8rem;
+    border-radius: 60px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+/* ========== CARD DE BUSCA ========== */
+.search-card {
+    background: #ffffffdd;
+    backdrop-filter: blur(8px);
+    border-radius: 2rem;
+    padding: 1.6rem 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.02);
+    border: 1px solid #cbe3be;
+    transition: all 0.3s;
+}
+
+.search-card:hover {
+    box-shadow: 0 15px 30px -10px rgba(60, 90, 40, 0.15);
+    border-color: #b0d696;
+}
+
+.input-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.input-field {
+    flex: 3;
+    min-width: 220px;
+}
+
+.input-field label {
+    font-weight: 700;
+    color: #1c481f;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    font-size: 1rem;
+    border: 2px solid #c2dfb0;
+    border-radius: 2rem;
+    background: white;
+    font-family: 'Inter', 'Fira Code', monospace;
+    font-weight: 500;
+    transition: 0.2s;
+    outline: none;
+}
+
+.input-field input:focus {
+    border-color: #2b8c3e;
+    box-shadow: 0 0 0 4px rgba(59, 163, 74, 0.2);
+    transform: scale(1.01);
+}
+
+.btn-rastrear {
+    background: linear-gradient(135deg, #1c6e2f, #259637);
+    border: none;
+    color: white;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border-radius: 3rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 6px 0 #0e461c;
+    transform: translateY(-2px);
+}
+
+.btn-rastrear:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #0e461c;
+}
+
+.btn-rastrear:hover {
+    background: linear-gradient(135deg, #248a3a, #2caa45);
+    gap: 14px;
+    letter-spacing: 0.3px;
+}
+
+.btn-rastrear i {
+    font-size: 1.2rem;
+}
+
+.exemplo-codigos {
+    text-align: center;
+    margin-top: 1.2rem;
+    font-size: 0.8rem;
+    color: #43753b;
+    font-weight: 500;
+}
+
+.exemplo-codigos span {
+    background: #eef3e9;
+    padding: 0.3rem 1rem;
+    border-radius: 40px;
+    font-family: monospace;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    display: inline-block;
+    margin: 0 6px;
+    border: 1px solid transparent;
+}
+
+.exemplo-codigos span:hover {
+    background: #d4e8c4;
+    transform: translateY(-2px);
+    border-color: #7cb05e;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* ========== ÁREA DA TIMELINE (LINHA DO TEMPO) ========== */
+.timeline-area {
+    margin-top: 2rem;
+    transition: 0.3s;
+}
+
+.timeline-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    border-left: 7px solid #2e8b47;
+    padding-left: 1.2rem;
+    margin-bottom: 2rem;
+    color: #1d3b1a;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.timeline-title i {
+    color: #3aad4a;
+    font-size: 1.7rem;
+}
+
+/* estrutura da timeline vertical */
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+/* linha mestra vertical */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    bottom: 20px;
+    width: 4px;
+    background: linear-gradient(to bottom, #84b372, #3f9e4c, #cfe3c2);
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px #d5f0c4;
+}
+
+/* cada item da linha do tempo */
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.4rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    transition: all 0.2s;
+}
+
+/* ícone circular */
+.timeline-icon {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    background: white;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05), 0 0 0 4px #f9fff5;
+    z-index: 2;
+    background: linear-gradient(135deg, #fafff2, #eef7e7);
+    border: 1px solid #b7daa4;
+    transition: 0.2s;
+}
+
+.timeline-item:hover .timeline-icon {
+    transform: scale(1.05);
+    box-shadow: 0 10px 22px rgba(70, 120, 30, 0.15);
+    background: #ffffff;
+}
+
+.timeline-icon i {
+    font-size: 1.6rem;
+    color: #2b7740;
+}
+
+/* conteúdo do card */
+.timeline-content {
+    flex: 1;
+    background: rgba(255, 255, 245, 0.9);
+    backdrop-filter: blur(4px);
+    border-radius: 1.8rem;
+    padding: 1.2rem 1.6rem;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03);
+    border: 1px solid #dcebd2;
+    transition: all 0.25s ease;
+}
+
+.timeline-content:hover {
+    transform: translateX(8px);
+    background: #fffff5;
+    border-color: #add694;
+    box-shadow: 0 12px 20px -8px rgba(60, 100, 30, 0.12);
+}
+
+.timeline-step {
+    font-weight: 800;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #628c51;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.timeline-step .badge {
+    background: #dff0d6;
+    padding: 0.25rem 0.85rem;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #205d2a;
+}
+
+.timeline-content h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 0.6rem;
+    color: #1f4825;
+    line-height: 1.2;
+}
+
+.timeline-content p {
+    line-height: 1.5;
+    color: #2b4226;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+/* tags de sustentabilidade */
+.sustentabilidade-tag {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.tag {
+    background: #e9f5e3;
+    padding: 0.3rem 1rem;
+    border-radius: 40px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #1b5e2a;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.1s;
+    border: 1px solid #cae3ba;
+}
+
+.tag i {
+    font-size: 0.7rem;
+    color: #358a45;
+}
+
+.tag:hover {
+    background: #daf0cd;
+    transform: scale(0.98);
+}
+
+/* mensagem vazia / não encontrado */
+.empty-message {
+    background: #f6fcf2;
+    border-radius: 2rem;
+    padding: 2.8rem 2rem;
+    text-align: center;
+    font-weight: 600;
+    color: #517a44;
+    border: 2px dashed #b8daa2;
+    backdrop-filter: blur(2px);
+}
+
+.empty-message i {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+    opacity: 0.7;
+}
+
+/* footer */
+footer {
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #607a52;
+    border-top: 1px solid #cfe1c2;
+    padding-top: 1.8rem;
+    font-weight: 500;
+}
+
+/* animações */
+.animate-in {
+    animation: fadeSlideUp 0.45s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* responsividade refinada */
+@media (max-width: 780px) {
+    body {
+        padding: 1.2rem;
+    }
+    .container {
+        padding: 1.5rem;
+    }
+    .hero h1 {
+        font-size: 2.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .hero h1 i {
+        font-size: 2rem;
+    }
+    .timeline {
+        padding-left: 0.5rem;
+    }
+    .timeline::before {
+        left: 8px;
+    }
+    .timeline-item {
+        gap: 0.8rem;
+    }
+    .timeline-icon {
+        width: 44px;
+        height: 44px;
+    }
+    .timeline-icon i {
+        font-size: 1.3rem;
+    }
+    .timeline-content {
+        padding: 0.9rem 1.2rem;
+    }
+    .timeline-content h3 {
+        font-size: 1.15rem;
+    }
+    .timeline-title {
+        font-size: 1.4rem;
+    }
+    .btn-rastrear {
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+@media (max-width: 550px) {
+    .timeline-content p {
+        font-size: 0.9rem;
+    }
+    .tag {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.8rem;
+    }
+    .search-card {
+        padding: 1.2rem;
+    }
+    .input-field input {
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* personalização de scroll para navegadores */
+::-webkit-scrollbar {
+    width: 10px;
+    background: #e2efdb;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #5f9e4b;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #367c2e;
+}
+
+/* badges e efeitos extras nos cards */
+.timeline-content .tag i.fa-check-circle {
+    color: #308a44;
+}
+
+/* destaque para selos adicionais */
+.container .timeline-area .sustentabilidade-tag + div {
+    margin-top: 16px;
+}

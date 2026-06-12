@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Rastro Verde · Rastreabilidade Sustentável</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #eef5e8 0%, #d9e4ce 100%);
+            font-family: 'Inter', sans-serif;
+            color: #1a2e1f;
+            padding: 2rem 1.5rem;
+        }
+
+        /* container principal */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: rgba(255, 255, 240, 0.92);
+            backdrop-filter: blur(2px);
+            border-radius: 3.5rem;
+            box-shadow: 0 25px 45px -12px rgba(40, 60, 25, 0.35), inset 0 1px 0 rgba(255,255,200,0.8);
+            overflow: hidden;
+            padding: 2rem 2rem 3rem;
+            transition: all 0.2s ease;
+        }
+
+        /* cabeçalho verde */
+        .hero {
+            text-align: center;
+            margin-bottom: 2.8rem;
+            position: relative;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1f5e2a, #3da34b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .hero h1 i {
+            background: none;
+            color: #2b7a3b;
+            font-size: 2.8rem;
+            background-clip: unset;
+            -webkit-background-clip: unset;
+            color: #2c7840;
+        }
+        .hero p {
+            color: #3a5433;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            font-size: 1.15rem;
+            background: #e1f0daa0;
+            display: inline-block;
+            padding: 0.4rem 1.8rem;
+            border-radius: 60px;
+            backdrop-filter: blur(2px);
+        }
+
+        /* card de busca */
+        .search-card {
+            background: #ffffffdd;
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 1.6rem 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: 1px solid #cbe3be;
+            transition: all 0.2s;
+        }
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        .input-field {
+            flex: 3;
+            min-width: 220px;
+        }
+        .input-field label {
+            font-weight: 600;
+            color: #1c481f;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        .input-field input {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            font-size: 1rem;
+            border: 2px solid #c2dfb0;
+            border-radius: 2rem;
+            background: white;
+            font-family: 'Inter', monospace;
+            font-weight: 500;
+            transition: 0.2s;
+            outline: none;
+        }
+        .input-field input:focus {
+            border-color: #2b8c3e;
+            box-shadow: 0 0 0 3px rgba(59, 163, 74, 0.2);
+        }
+        .btn-rastrear {
+            background: #1c6e2f;
+            border: none;
+            color: white;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 3rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 6px 0 #0e461c;
+            transform: translateY(-2px);
+        }
+        .btn-rastrear:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #0e461c;
+        }
+        .btn-rastrear i {
+            font-size: 1.2rem;
+        }
+
+        .exemplo-codigos {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #43753b;
+        }
+        .exemplo-codigos span {
+            background: #eef3e9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-family: monospace;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.1s;
+            display: inline-block;
+            margin: 0 4px;
+        }
+        .exemplo-codigos span:hover {
+            background: #cbe3bb;
+        }
+
+        /* linha do tempo vertical (cronológica) */
+        .timeline-area {
+            margin-top: 2rem;
+            transition: 0.3s;
+        }
+        .timeline-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            border-left: 7px solid #2e8b47;
+            padding-left: 1rem;
+            margin-bottom: 2rem;
+            color: #1d3b1a;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        /* linha vertical principal */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            bottom: 20px;
+            width: 4px;
+            background: linear-gradient(to bottom, #84b372, #3f9e4c, #cfe3c2);
+            border-radius: 4px;
+            box-shadow: 0 0 0 1px #d5f0c4;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.2rem;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            transition: all 0.2s;
+        }
+        .timeline-icon {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            background: white;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.05), 0 0 0 3px #f9fff5;
+            z-index: 2;
+            background: #f3feee;
+            border: 1px solid #b7daa4;
+        }
+        .timeline-icon i {
+            font-size: 1.6rem;
+            color: #2b7740;
+        }
+        .timeline-content {
+            flex: 1;
+            background: rgba(255, 255, 245, 0.9);
+            backdrop-filter: blur(4px);
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.6rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #dcebd2;
+            transition: transform 0.2s;
+        }
+        .timeline-content:hover {
+            transform: translateX(5px);
+            background: #fffff3;
+            border-color: #add694;
+        }
+        .timeline-step {
+            font-weight: 800;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #628c51;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .timeline-step .badge {
+            background: #dff0d6;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #205d2a;
+        }
+        .timeline-content h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            color: #1f4825;
+        }
+        .timeline-content p {
+            line-height: 1.45;
+            color: #2b4226;
+            font-weight: 500;
+        }
+        .sustentabilidade-tag {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .tag {
+            background: #e9f5e3;
+            padding: 0.25rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #1b5e2a;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .tag i {
+            font-size: 0.7rem;
+        }
+        .empty-message {
+            background: #f6fcf2;
+            border-radius: 2rem;
+            padding: 2.8rem;
+            text-align: center;
+            font-weight: 500;
+            color: #517a44;
+            border: 2px dashed #b8daa2;
+        }
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #607a52;
+            border-top: 1px solid #cfe1c2;
+            padding-top: 1.8rem;
+        }
+
+        @media (max-width: 680px) {
+            .container {
+                padding: 1.5rem;
+            }
+            .timeline {
+                padding-left: 0.5rem;
+            }
+            .timeline-item {
+                gap: 0.8rem;
+            }
+            .timeline-icon {
+                width: 40px;
+                height: 40px;
+            }
+            .timeline-icon i {
+                font-size: 1.2rem;
+            }
+            .timeline-content h3 {
+                font-size: 1.1rem;
+            }
+        }
+        .animate-in {
+            animation: fadeSlideUp 0.45s ease-out;
+        }
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="hero">
+        <h1><i class="fas fa-leaf"></i> Rastro Verde <i class="fas fa-seedling"></i></h1>
+        <p>🌱 Do campo sustentável até a sua mesa · Rastreabilidade com transparência</p>
+    </div>
+
+    <div class="search-card">
+        <div class="input-group">
+            <div class="input-field">
+                <label><i class="fas fa-qrcode"></i> CÓDIGO DO LOTE / QR SIMULADO</label>
+                <input type="text" id="loteInput" placeholder="Ex: CAFE-BR-001, LARANJA-SUL-03, HORT-ORG-22" autocomplete="off">
+            </div>
+            <button class="btn-rastrear" id="btnRastrear"><i class="fas fa-map-marked-alt"></i> Rastrear Jornada</button>
+        </div>
+        <div class="exemplo-codigos">
+            📋 códigos de teste: 
+            <span data-code="CAFE-BR-001">🌿 CAFE-BR-001</span>  
+            <span data-code="LARANJA-SUL-03">🍊 LARANJA-SUL-03</span>  
+            <span data-code="HORT-ORG-22">🥬 HORT-ORG-22</span>  
+            <span data-code="MEL-FLOR-77">🍯 MEL-FLOR-77</span>
+        </div>
+    </div>
+
+    <div class="timeline-area" id="timelineArea">
+        <div class="timeline-title" id="dynamicTitle">
+            <i class="fas fa-history"></i> Jornada da transparência
+        </div>
+        <div id="timelineContainer">
+            <!-- A timeline será injetada dinamicamente via JS -->
+            <div class="empty-message">
+                <i class="fas fa-search-tree" style="font-size: 2rem; opacity: 0.7;"></i>
+                <p style="margin-top: 12px;">🔍 Insira um código de lote e descubra a rota verde do alimento.<br>Produção com energia renovável, respeito ambiental e trabalhadores dignos.</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        🌍 Rastro Verde · simula rastreabilidade com dados reais de sustentabilidade · energia limpa + trabalho justo + conservação da natureza
+    </footer>
+</div>
+
+<script>
+    // Base de dados simulada para rastreabilidade do campo à mesa
+    // Cada produto possui uma jornada detalhada com foco em energia renovável, leis trabalhistas e ambientais
+    const database = {
+        "CAFE-BR-001": {
+            nomeProduto: "Café Orgánico Monte Verde",
+            lote: "CAFE-BR-001",
+            selos: ["🌱 Agricultura Regenerativa", "☀️ Energia Solar 100%", "🤝 Certificação Fair Trade"],
+            timeline: [
+                {
+                    fase: "Colheita Sustentável",
+                    titulo: "Fazenda Esperança · Sul de Minas",
+                    descricao: "Colheita seletiva de grãos maduros com manejo agroflorestal. Trabalhadores recebem salário digno + moradia e programa de saúde. Energia renovável (biomassa e solar) em todas as operações.",
+                    tags: ["☀️ Energia limpa", "👥 Lei trabalhista exemplar", "🐞 Sem defensores tóxicos"]
+                },
+                {
+                    fase: "Processamento & Secagem",
+                    titulo: "Usina Verde Certificada",
+                    descricao: "Secagem natural em terreiros elevados com reuso de água e placas fotovoltaicas. Resíduos de café viram adubo orgânico. Emissões reduzidas em 78% comparado a métodos convencionais.",
+                    tags: ["♻️ Economia circular", "🔋 Energia solar", "💧 Tratamento de efluentes"]
+                },
+                {
+                    fase: "Torrefação Justa",
+                    titulo: "Torrefação Solar · Parque Industrial Limpo",
+                    descricao: "Torra artesanal com controle de poluentes, utilizando 100% eletricidade renovável. Cooperativa local garante transparência e respeito às normas da OIT.",
+                    tags: ["⚡ Energia eólica + solar", "🏭 Certificação Carbono Neutro", "🤝 Salário justo"]
+                },
+                {
+                    fase: "Logística Reversa",
+                    titulo: "Transporte Verde até o Centro de Distribuição",
+                    descricao: "Frota elétrica e roteirização sustentável. Embalagens biodegradáveis de amido de milho. Rastreio em tempo real de pegada de carbono compensada.",
+                    tags: ["🚚 Logística verde", "📦 Embalagem compostável", "🌳 Compensação de carbono"]
+                },
+                {
+                    fase: "Na sua Mesa",
+                    titulo: "Você apoia a cadeia sustentável",
+                    descricao: "O produto chega com notas de rastreabilidade. Cada xícara ajuda a preservar nascentes e gerar renda para comunidades rurais. Código QR dinâmico com dados do lote.",
+                    tags: ["🏆 Consumo consciente", "🔄 Economia local", "🌟 Selo Rastro Verde"]
+                }
+            ]
+        },
+        "LARANJA-SUL-03": {
+            nomeProduto: "Laranja Vale Agroflorestal",
+            lote: "LARANJA-SUL-03",
+            selos: ["💧 Irrigação Solar", "🐝 Polinizadores Protegidos", "✅ Certificação Ambiental"],
+            timeline: [
+                {
+                    fase: "Pomar Biodiverso",
+                    titulo: "Sítio Natura · Integração lavoura-floresta",
+                    descricao: "Pomar com árvores nativas intercaladas, uso exclusivo de energia solar em bombas e sistemas de irrigação por gotejamento. Respeito às leis trabalhistas rurais e previdência.",
+                    tags: ["☀️ Bombeamento solar", "🌳 Corredor ecológico", "👨‍🌾 Trabalho seguro"]
+                },
+                {
+                    fase: "Colheita e Seleção",
+                    titulo: "Colheita manual + empacotamento verde",
+                    descricao: "Equipes treinadas em boas práticas, sem trabalho infantil. Utilização de energia fotovoltaica na packing house. Resíduos orgânicos viram biofertilizante.",
+                    tags: ["🔋 Energia renovável", "📜 Compliance trabalhista", "♻️ Aproveitamento total"]
+                },
+                {
+                    fase: "Transporte Carbono Neutro",
+                    titulo: "Rotas de distribuição sustentáveis",
+                    descricao: "Caminhões movidos a biodiesel e biometano. Embalagens fabricadas com PET reciclado pós-consumo. Rastreabilidade de emissões.",
+                    tags: ["🍃 Logística de baixo carbono", "📦 Embalagem ecológica", "🌱 Parceria climática"]
+                },
+                {
+                    fase: "Feira & Consumidor Final",
+                    titulo: "Do Campo à sua mesa com orgulho ético",
+                    descricao: "Cada lote carrega informação de procedência. A produção incentiva a agricultura familiar e preserva mananciais. Energia limpa em todas as etapas pós-colheita.",
+                    tags: ["🏡 Agricultura familiar", "💧 Proteção hídrica", "⚖️ Justiça social"]
+                }
+            ]
+        },
+        "HORT-ORG-22": {
+            nomeProduto: "Mix de Hortaliças Orgânicas",
+            lote: "HORT-ORG-22",
+            selos: ["🧑‍🌾 Agroecologia", "💡 Eficiência energética", "🔄 Cadeia curta"],
+            timeline: [
+                {
+                    fase: "Estufas Solares",
+                    titulo: "BioFazenda Renovável",
+                    descricao: "Estufas com tecnologia de captação de energia solar ativa, aquecimento geotérmico leve. Plantio direto na palha, controle biológico de pragas, respeito às leis ambientais rigorosas.",
+                    tags: ["☀️ Geração distribuída", "🐞 Controle biológico", "📜 ISO 14001"]
+                },
+                {
+                    fase: "Irrigação Inteligente",
+                    titulo: "Sistema de reuso + energia limpa",
+                    descricao: "Painéis solares para bombas, água de chuva captada. Trabalhadores registrados, cesta básica e treinamento contínuo.",
+                    tags: ["💧 Uso racional da água", "⚡ 100% solar", "🤝 Respeito ao colaborador"]
+                },
+                {
+                    fase: "Distribuição Local",
+                    titulo: "Circuito Curto de Comercialização",
+                    descricao: "Veículo elétrico compartilhado para entregas urbanas. Embalagens retornáveis e isenção de plásticos. Monitoramento de pegada hídrica positiva.",
+                    tags: ["🚛 Logística limpa", "♻️ Retornável", "🏙️ Apoio à economia local"]
+                },
+                {
+                    fase: "Mesa Consciente",
+                    titulo: "Você conectado à natureza",
+                    descricao: "Rastreabilidade do lote garante transparência. Cada refeição promove redução de CO₂ e impulsiona produtores que adotam energia renovável e justiça social.",
+                    tags: ["🌟 Selo Rastro Verde", "🥗 Alimentação saudável", "🌎 Ativismo ambiental"]
+                }
+            ]
+        },
+        "MEL-FLOR-77": {
+            nomeProduto: "Mel Silvestre Biodinâmico",
+            lote: "MEL-FLOR-77",
+            selos: ["🐝 Apicultura sustentável", "🔆 Energia solar no meliponário", "🌳 Reserva legal"],
+            timeline: [
+                {
+                    fase: "Apiário Conservacionista",
+                    titulo: "Reserva Flor da Mata",
+                    descricao: "Caixas racionais com energia solar para monitoramento remoto. Respeito aos ciclos das abelhas nativas, recuperação de mata ciliar. Geração de renda para famílias da reserva.",
+                    tags: ["☀️ Automação verde", "🌺 Polinização nativa", "👪 Impacto social positivo"]
+                },
+                {
+                    fase: "Extraído com Ética",
+                    titulo: "Beneficiamento ecologicamente correto",
+                    descricao: "Processo a baixa temperatura alimentado por energia fotovoltaica. Sem superaquecimento, mantendo propriedades do mel. Cooperativa segue todas as normas trabalhistas.",
+                    tags: ["🔋 Energia solar pura", "🍯 Produto vivo", "📋 Conformidade legal"]
+                },
+                {
+                    fase: "Embalagem e Rotulagem Verde",
+                    titulo: "Vidro reciclável e rótulo de papel semente",
+                    descricao: "Embalagens de vidro retornável e rótulo com sementes de flores. Transporte compartilhado com logística reversa.",
+                    tags: ["♻️ Embalagem plantar", "🚛 Rota limpa", "🧾 Transparência total"]
+                },
+                {
+                    fase: "Doçura no seu lar",
+                    titulo: "Valorização do mel agroecológico",
+                    descricao: "Todo o processo desde o apiário até a mesa mantém compromisso com energias renováveis, boas práticas trabalhistas e conservação da biodiversidade.",
+                    tags: ["✨ Qualidade Premium", "🌱 Pegada positiva", "🏅 Rastreável"]
+                }
+            ]
+        }
+    };
+
+    const loteInput = document.getElementById('loteInput');
+    const btnRastrear = document.getElementById('btnRastrear');
+    const timelineContainer = document.getElementById('timelineContainer');
+    const dynamicTitle = document.getElementById('dynamicTitle');
+
+    // Função para criar a timeline dinâmica com base nos dados
+    function renderTimeline(loteKey) {
+        const product = database[loteKey];
+        if (!product) {
+            // caso não encontre o lote: exibir mensagem elegante de não encontrado
+            timelineContainer.innerHTML = `
+                <div class="empty-message animate-in">
+                    <i class="fas fa-question-circle" style="font-size: 2.5rem; color: #93a77d;"></i>
+                    <p style="margin-top: 16px; font-weight: 600;">🔎 Nenhum lote encontrado para "${escapeHtml(loteInput.value.trim())}"</p>
+                    <p style="font-size: 0.85rem;">Utilize os códigos sugeridos acima ou digite um lote válido.<br>Ex: CAFE-BR-001, LARANJA-SUL-03, HORT-ORG-22, MEL-FLOR-77</p>
+                </div>
+            `;
+            dynamicTitle.innerHTML = `<i class="fas fa-history"></i> Jornada da transparência · lote não localizado`;
+            return;
+        }
+
+        // Atualizar título com nome do produto
+        dynamicTitle.innerHTML = `<i class="fas fa-leaf"></i> Jornada sustentável · ${product.nomeProduto} <span style="font-size:0.8rem;">(lote ${product.lote})</span>`;
+        
+        // Construir os itens da timeline
+        let timelineHTML = `<div class="timeline">`;
+        product.timeline.forEach((step, idx) => {
+            // prepara tags HTML
+            const tagsHtml = step.tags.map(tag => `<span class="tag"><i class="fas fa-check-circle"></i> ${tag}</span>`).join('');
+            timelineHTML += `
+                <div class="timeline-item animate-in" style="animation-delay: ${idx * 0.05}s;">
+                    <div class="timeline-icon">
+                        <i class="fas ${getIconForPhase(step.fase)}"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-step">
+                            <span class="badge">${step.fase}</span>
+                            <i class="fas fa-seedling" style="font-size: 11px;"></i> ciclo rastreado
+                        </div>
+                        <h3>${escapeHtml(step.titulo)}</h3>
+                        <p>${escapeHtml(step.descricao)}</p>
+                        <div class="sustentabilidade-tag">
+                            ${tagsHtml}
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        timelineHTML += `</div>`;
+        
+        // selos bonus opcionais
+        const selosBonus = product.selos.map(s => `<span class="tag" style="background:#dfedd4;"><i class="fas fa-award"></i> ${s}</span>`).join('');
+        const footerSelo = `<div style="margin-top: 1.2rem; display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px;">${selosBonus}</div>`;
+        
+        timelineContainer.innerHTML = timelineHTML + footerSelo;
+    }
+
+    // helper ícones dinâmicos baseados na fase
+    function getIconForPhase(fase) {
+        const lower = fase.toLowerCase();
+        if (lower.includes('colheita') || lower.includes('pomar') || lower.includes('apiário')) return 'fa-tractor';
+        if (lower.includes('processamento') || lower.includes('torrefação') || lower.includes('beneficiamento')) return 'fa-industry';
+        if (lower.includes('transport') || lower.includes('logística')) return 'fa-truck';
+        if (lower.includes('mesa') || lower.includes('consumidor') || lower.includes('seu lar')) return 'fa-utensils';
+        if (lower.includes('estufa') || lower.includes('irrigação')) return 'fa-sprinkler';
+        return 'fa-map-marker-alt';
+    }
+
+    // escape básico para segurança
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
+        });
+    }
+
+    // Evento principal de rastreamento
+    function handleRastrear() {
+        let codigo = loteInput.value.trim().toUpperCase();
+        if (codigo === "") {
+            timelineContainer.innerHTML = `
+                <div class="empty-message animate-in">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>📌 Por favor, insira um código de lote para iniciar a rastreabilidade.</p>
+                </div>
+            `;
+            dynamicTitle.innerHTML = `<i class="fas fa-history"></i> Jornada da transparência`;
+            return;
+        }
+        // Busca no database (case sensitive já normalizamos)
+        if (database[codigo]) {
+            renderTimeline(codigo);
+        } else {
+            renderTimeline(null); // não encontrado
+        }
+    }
+
+    // cliques nos códigos de exemplo
+    function preencherExemplo(code) {
+        loteInput.value = code;
+        handleRastrear();
+    }
+
+    btnRastrear.addEventListener('click', handleRastrear);
+    loteInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleRastrear();
+    });
+    
+    // adicionar eventos aos spans exemplos
+    document.querySelectorAll('.exemplo-codigos span').forEach(span => {
+        span.addEventListener('click', () => {
+            const code = span.getAttribute('data-code');
+            if (code) preencherExemplo(code);
+        });
+    });
+
+    // inicial: nenhum lote (apenas placeholder)
+    // já exibe a mensagem inicial vazia correta
+</script>
+</body>
+</html>
